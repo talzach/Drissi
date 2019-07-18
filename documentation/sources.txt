@@ -1,0 +1,11 @@
+
+create-react-app docs - https://facebook.github.io/create-react-app/docs/
+react-bootstrap - https://react-bootstrap.github.io/components/
+
+Redux:
+redux with hooks and selectors - https://react-redux.js.org/next/api/hooks
+redux async - https://redux.js.org/advanced/async-actions
+redux with typescript - https://redux.js.org/recipes/usage-with-typescript
+                        https://codesandbox.io/s/w02m7jm3q7
+
+
