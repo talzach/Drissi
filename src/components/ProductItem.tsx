@@ -1,12 +1,26 @@
 import React from 'react';
+import styled from 'styled-components';
+import { Product } from '../store/product/types';
+
+const StyledSpan = styled.span``;
+
+const StyledImg = styled.img`
+  height: 40vh;
+  border: 1px solid lightgray;
+  overflow: auto;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+`;
 
 const ProductItem: React.FunctionComponent<{
-  product: any;
-}> = ({ product }) => {
+  product: Product;
+  className?: any;
+}> = ({ product, className }) => {
   return (
-    <span>
-      <img src={product.image} alt="Loading..." height="300vh" />
-    </span>
+    <StyledSpan className={className}>
+      <StyledImg src={product.image} alt="Loading..." />
+    </StyledSpan>
   );
 };
 

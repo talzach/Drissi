@@ -1,29 +1,46 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { createSelector } from 'reselect';
+import styled from 'styled-components';
 
 import ProductItem from './ProductItem';
-import { AppState } from '../store';
-import { Product, ProductState } from '../store/product/types';
+import { Product } from '../store/product/types';
+import {
+  selectAllProducts,
+  selectIsFetchingProducts
+} from '../store/product/selectors';
+import Loading from './Loading';
 
-const selectAllProducts = createSelector(
-  (state: AppState) => state.productsReducer,
-  (productsState: ProductState) => productsState.products
-);
+const StyledProductItem = styled(ProductItem)`
+  margin: 10px;
+  flex: 1;
+`;
+
+const ProductListDiv = styled.div`
+  display: flex;
+  margin: auto;
+  width: 25vw;
+  padding: 10px;
+`;
 
 const getProductItems = (products: Product[]) => {
   return products
     ? products.map(product => (
-        <ProductItem product={product} key={product.id} />
+        <StyledProductItem product={product} key={product.id} />
       ))
     : null;
 };
 
-const ProductList = () => {
-  const products = useSelector(selectAllProducts);
+const ProductList: React.FunctionComponent = () => {
+  const products: Product[] = useSelector(selectAllProducts);
+  const isFetching: boolean = useSelector(selectIsFetchingProducts);
   const productItems = getProductItems(products);
 
-  return <div>{productItems}</div>;
+  return (
+    <ProductListDiv>
+      <Loading isLoading={isFetching} />
+      {productItems}
+    </ProductListDiv>
+  );
 };
 
 export default ProductList;

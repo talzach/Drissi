@@ -24,7 +24,7 @@ export const receiveProducts = (products: Product[]) => {
   };
 };
 
-export function fetchProducts() {
+export const fetchProducts = () => {
   // Thunk middleware knows how to handle functions.
   // It passes the dispatch method as an argument to the function,
   // thus making it able to dispatch actions itself.
@@ -57,7 +57,7 @@ export function fetchProducts() {
         dispatch(receiveProducts(initialProducts))
       );
   };
-}
+};
 
 const initialProducts = [
   {

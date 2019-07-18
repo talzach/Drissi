@@ -8,4 +8,7 @@ redux async - https://redux.js.org/advanced/async-actions
 redux with typescript - https://redux.js.org/recipes/usage-with-typescript
                         https://codesandbox.io/s/w02m7jm3q7
 
+CSS:
+styled-components - https://www.styled-components.com/docs/basics#getting-started
+
 
