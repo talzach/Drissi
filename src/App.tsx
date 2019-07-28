@@ -6,6 +6,7 @@ import './App.css';
 import Home from './components/Home';
 import Navigator from './components/Navigator';
 import { fetchProducts } from './store/product/actions';
+import ProductPage from './components/ProductPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -17,6 +18,7 @@ function App() {
         <Navigator />
         <Route path="/" exact component={Home} />
         <Route path="/catalog/" component={Home} />
+        <Route path="/product/:id" component={ProductPage} />
       </Router>
     </div>
   );

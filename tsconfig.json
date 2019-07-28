@@ -15,5 +15,8 @@
     "noEmit": true,
     "jsx": "preserve"
   },
+  "jsRules": {
+    "no-empty": true
+  },
   "include": ["src", "react-app-env.d.ts"]
 }

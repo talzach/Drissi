@@ -1,6 +1,12 @@
 import fetch from 'cross-fetch';
 
-import { REQUEST_PRODUCTS, RECEIVE_PRODUCTS, Product } from './types';
+import {
+  REQUEST_PRODUCTS,
+  RECEIVE_PRODUCTS,
+  Product,
+  RECEIVE_PRODUCT
+} from './types';
+import { AppState } from '..';
 
 let nextTodoId = 0;
 
@@ -20,6 +26,14 @@ export const receiveProducts = (products: Product[]) => {
   return {
     type: RECEIVE_PRODUCTS,
     products: products,
+    receivedAt: Date.now()
+  };
+};
+
+export const receiveProduct = (product: Product) => {
+  return {
+    type: RECEIVE_PRODUCT,
+    product: product,
     receivedAt: Date.now()
   };
 };
@@ -59,17 +73,48 @@ export const fetchProducts = () => {
   };
 };
 
+function shouldFetchProduct(
+  { productsReducer }: AppState,
+  productId: string
+): boolean {
+  const post = productsReducer.products.find(x => x.id === productId);
+  return post == null;
+}
+
+export const fetchProductIfNeeded = (productId: string) => {
+  return function(dispatch: any, getState: Function) {
+    if (shouldFetchProduct(getState(), productId)) {
+      dispatch(fetchProduct(productId));
+    }
+  };
+};
+
+export const fetchProduct = (productId: string) => {
+  return function(dispatch: any) {
+    dispatch(requestProducts());
+
+    const product = {
+      id: productId,
+      name: 'dress3',
+      user: 'tal2',
+      image: '/images/dress.jpg'
+    };
+
+    dispatch(receiveProduct(product));
+  };
+};
+
 const initialProducts = [
   {
-    id: 1,
+    id: '1',
     name: 'dress',
     user: 'tal',
-    image: 'dress.jpg'
+    image: '/images/dress.jpg'
   },
   {
-    id: 2,
+    id: '2',
     name: 'dress2',
     user: 'noa',
-    image: 'dress.jpg'
+    image: '/images/dress.jpg'
   }
 ];

@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import ProductItem from './ProductItem';
 import { Product } from '../store/product/types';
 import {
-  selectAllProducts,
+  selectProducts,
   selectIsFetchingProducts
 } from '../store/product/selectors';
 import Loading from './Loading';
@@ -31,7 +31,7 @@ const getProductItems = (products: Product[]) => {
 };
 
 const ProductList: React.FunctionComponent = () => {
-  const products: Product[] = useSelector(selectAllProducts);
+  const products: Product[] = useSelector(selectProducts);
   const isFetching: boolean = useSelector(selectIsFetchingProducts);
   const productItems = getProductItems(products);
 

@@ -2,7 +2,8 @@ import {
   REQUEST_PRODUCTS,
   RECEIVE_PRODUCTS,
   ProductActionTypes,
-  ProductState
+  ProductState,
+  RECEIVE_PRODUCT
 } from './types';
 
 const initialState: ProductState = {
@@ -24,6 +25,13 @@ export function productsReducer(
       return {
         ...state,
         products: action.products,
+        isFetching: false,
+        lastUpdated: action.receivedAt
+      };
+    case RECEIVE_PRODUCT:
+      return {
+        ...state,
+        products: [...state.products, action.product],
         isFetching: false,
         lastUpdated: action.receivedAt
       };
